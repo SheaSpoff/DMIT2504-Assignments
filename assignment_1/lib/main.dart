@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             //TODO: Put your code here to complete this app.
+            // Column 1
             Column(
               children: [
                 Container(
@@ -46,27 +47,60 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
+               Transform.rotate(
+                angle: 3.14 / 4,
+                child :  Container(
                   height: 100,
                   width: 100,
                   color: Colors.white,
+                  child: const Center(
+                    child: Text(
+                      'Container 2',
+                    ),
+                  ),
                 )
+               ),
               ],
             ),
+            // End of Column 1
+            // Column 2
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.purple,
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    color: Colors.yellow,
+                    child: const Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Text(
+                        "Container 3",
+                      ),
+                    ),
+                  ),
                 ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.orange,
-                )
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    color: Colors.blue,
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        "Container 4",
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
+            // End of Column 2
+            // Column 3
             Column(
               children: [
                 Container(
@@ -81,6 +115,7 @@ class MyApp extends StatelessWidget {
                 )
               ],
             ),
+            // End of Column 3
           ],
         ),
       ),
