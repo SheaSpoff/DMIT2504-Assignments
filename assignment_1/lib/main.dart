@@ -26,11 +26,11 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blue,
         ),
         body: Row(
-          // const??
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             //TODO: Put your code here to complete this app.
+
             // Column 1
             Column(
               children: [
@@ -102,17 +102,43 @@ class MyApp extends StatelessWidget {
             // End of Column 2
             // Column 3
             Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.blue,
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black,
+                      border: Border.all(color: Colors.white, width: 3),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Container 5',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
                 ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.red,
-                )
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    color: Colors.red,
+                    child: const Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Con 6",
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                  ),
+                ),
               ],
             ),
             // End of Column 3
