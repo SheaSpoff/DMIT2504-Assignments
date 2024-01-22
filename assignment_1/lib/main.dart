@@ -25,12 +25,62 @@ class MyApp extends StatelessWidget {
           title: const Text("App1 - UI Layout"),
           backgroundColor: Colors.blue,
         ),
-        body: const Row(
+        body: Row(
+          // const??
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             //TODO: Put your code here to complete this app.
-            
+            Column(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    border: Border.all(color: Colors.black, width: 3),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Container 1',
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.white,
+                )
+              ],
+            ),
+            Column(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.purple,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.orange,
+                )
+              ],
+            ),
+            Column(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.blue,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.red,
+                )
+              ],
+            ),
           ],
         ),
       ),
