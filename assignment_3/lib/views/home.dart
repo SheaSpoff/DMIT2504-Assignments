@@ -61,7 +61,16 @@ class HomeViewState extends State<HomeView> {
             ),
             Expanded(
               //TODO: Replace this Text child with a ListView.builder
-              child: Text('Hi'),
+              child: ListView.builder(
+              itemCount: stockList.length,
+              itemBuilder: (BuildContext context, int index) {
+                final stock = stockList[index];
+                return ListTile(
+                  title: Text(stock['name']),
+                  subtitle: Text('Quantity: ${stock['quantity']}, Price: ${stock['price']}'),
+                );
+              },
+            ),
             ),
           ],
         ),
@@ -111,7 +120,26 @@ class HomeViewState extends State<HomeView> {
                       //attach them to stockList,
                       //then print all stocks to the console and,
                       //finally call setstate at the end.
+
+                      var companyData = await stockService.getCompanyInfo(symbol);
+                      var quoteData = await stockService.getQuote(symbol);
                       
+                      if (companyData != null && quoteData != null) {
+                        symbol = quoteData['Global Quote']['01. symbol'];
+                        companyName = companyData['Name'];
+                        price = quoteData['Global Quote']['05. price'];
+                        
+                        var stock = {
+                          'name': companyName,
+                          'quantity': 1, 
+                          'price': double.parse(price)
+                        };
+                        
+                        await databaseService.insertStock(stock);
+                        stockList = await databaseService.getAllStocksFromDb();
+                        await databaseService.printAllStocksInDbToConsole();
+                        setState(() {});
+                      }
                     } catch (e) {
                       print('HomeView inputStock catch: $e');
                     }
@@ -129,3 +157,5 @@ class HomeViewState extends State<HomeView> {
         });
   }
 }
+
+
