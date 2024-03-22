@@ -5,13 +5,13 @@ import 'package:sqflite/sqflite.dart' as sqflitePackage;
 import 'package:path_provider/path_provider.dart';
 
 class SQFliteDbService {
-  late sqflitePackage.Database db;
+  sqflitePackage.Database? db;
   late String path;
 
   Future<void> getOrCreateDatabaseHandle() async {
     try {
       //TODO: Put your code here to complete this method.
-      if (db.isOpen) {
+      if (db != null) {
         return;
       }
 
@@ -38,7 +38,7 @@ class SQFliteDbService {
     try {
       //TODO: Put your code here to complete this method.
       await getOrCreateDatabaseHandle();
-      List<Map<String, dynamic>> stocks = await db.query('stocks');
+      List<Map<String, dynamic>> stocks = await db!.query('stocks');
       print(stocks);
     } catch (e) {
       print('SQFliteDbService printAllStocksInDbToConsole: $e');
@@ -50,7 +50,7 @@ class SQFliteDbService {
       //TODO: Put your code here to complete this method.
       // Replace this return with valid data.
       await getOrCreateDatabaseHandle();
-      List<Map<String, dynamic>> stocks = await db.query('stocks');
+      List<Map<String, dynamic>> stocks = await db!.query('stocks');
       return stocks;
     } catch (e) {
       print('SQFliteDbService getAllStocksFromDb: $e');
@@ -78,7 +78,7 @@ class SQFliteDbService {
       //In this case, if the same stock is inserted
       //multiple times, it replaces the previous data.
       await getOrCreateDatabaseHandle();
-      await db.insert(
+      await db!.insert(
         'stocks',
         stock,
         conflictAlgorithm: sqflitePackage.ConflictAlgorithm.replace,
@@ -93,7 +93,7 @@ class SQFliteDbService {
       //TODO: 
       //Put code here to update stock info.
       await getOrCreateDatabaseHandle();
-      await db.update(
+      await db!.update(
         'stocks',
         stock,
         where: 'id = ?',
@@ -109,7 +109,7 @@ class SQFliteDbService {
       //TODO: 
       //Put code here to delete a stock from the database.
       await getOrCreateDatabaseHandle();
-      await db.delete(
+      await db!.delete(
         'stocks',
         where: 'id = ?',
         whereArgs: [stock['id']],
